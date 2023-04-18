@@ -2,20 +2,19 @@ package com.github.curriculeon;
 
 import java.io.File;
 import java.util.List;
-import java.util.Scanner;
 
 public enum PersonRepositoryFacadeRefactored {
-    INSTANCE(new PersonDto(new File("target/database.csv")));
-    private final PersonDto personDto;
+    INSTANCE(new PersonPersistentRepository(new File("target/database.csv")));
+    private final PersonPersistentRepository personDto;
     private final InputOutputMediator console;
 
-    PersonRepositoryFacadeRefactored(PersonDto personDto) {
+    PersonRepositoryFacadeRefactored(PersonPersistentRepository personDto) {
         this.personDto = personDto;
         this.console = new InputOutputMediator();
     }
 
     public PersonRepository getRepository() {
-        return new PersonRepository(personDto.parse());
+        return new PersonRepository(personDto.toList());
     }
 
     public Person add() {
@@ -23,7 +22,7 @@ public enum PersonRepositoryFacadeRefactored {
         final String name = console.getStringInput("Enter name");
         final Integer age = console.getIntegerInput("Enter age");
         final Person personToAdd = new Person(id, name, age);
-        personDto.write(personToAdd);
+        personDto.add(personToAdd);
         return personToAdd;
     }
 
@@ -37,7 +36,7 @@ public enum PersonRepositoryFacadeRefactored {
         final Long newId = console.getLongInput("Enter new id");
         final String name = console.getStringInput("Enter name");
         final Integer age = console.getIntegerInput("Enter age");
-        personDto.update(id, new Person(newId, name, age));
+        personDto.updateById(id, new Person(newId, name, age));
         return getRepository().findById(id);
     }
 

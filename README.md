@@ -1,8 +1,26 @@
-# Curriculeon Maven Template
-* **Objective** - The purpose of this repository is to create a standard template to clone from when creating new projects.
+# Design Patterns Dry Run
 
-## How to use
-* To use this project as template, _clone_ the project into you `~/dev` directory.
-* Upon cloning, open the project in a text editor (VSCode, IntelliJ, SublimeText, Atom, etc.)
-* Ensure that the `artifactId` of the project is changed from `maven-template-project` to a more appropriate project name.
-* Click view the [`README-Sample.md`](./README-Sample.md) to view _how_ a `README` should be structured for a project.
+## Part 1 - Facade Design
+1. Document
+* DocumentInterface
+
+## Part 2 - Repository Design
+1. Person
+* PersonRepository
+
+## Part 3 - Mediator Pattern
+1. PersonRepositoryFacade
+* InputOutputMediator
+* PersonRepositoryFacadeRefactored
+
+## Part 4 - Strategy Design
+1. PersonRepositoryFacadeRefactoredOption
+
+## Part 5 - 
+1. PersonPersistentRepository
+* PersonRepositoryInterface
+* RepositoryInterface
+
+## Part 6 - Decorator Design
+1. LoggerRepositoryDecorator
+* LoggerRepositoryDecoratorInterface

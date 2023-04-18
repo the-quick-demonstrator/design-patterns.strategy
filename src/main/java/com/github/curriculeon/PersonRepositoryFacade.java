@@ -3,14 +3,14 @@ package com.github.curriculeon;
 import java.util.Scanner;
 
 public class PersonRepositoryFacade {
-    private final PersonDto personDto;
+    private final PersonPersistentRepository personDto;
 
-    public PersonRepositoryFacade(PersonDto personDto) {
+    public PersonRepositoryFacade(PersonPersistentRepository personDto) {
         this.personDto = personDto;
     }
 
     public PersonRepository getRepository() {
-        return new PersonRepository(personDto.parse());
+        return new PersonRepository(personDto.toList());
     }
 
     public Person add() {
@@ -22,7 +22,7 @@ public class PersonRepositoryFacade {
         System.out.println("Enter age");
         Integer age = Integer.parseInt(scanner.nextLine());
         Person personToAdd = new Person(id, name, age);
-        personDto.write(personToAdd);
+        personDto.add(personToAdd);
         return personToAdd;
     }
 
