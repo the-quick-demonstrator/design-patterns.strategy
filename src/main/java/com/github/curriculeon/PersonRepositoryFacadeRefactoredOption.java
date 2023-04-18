@@ -29,7 +29,12 @@ public enum PersonRepositoryFacadeRefactoredOption {
             final String message = "Welcome to the [ %s ] menu, from here, you can select of the following options:\n\t%s";
             userInput = io.getStringInput(message, menuName, menuOptions).toUpperCase();
             valueOf(userInput).invoke();
-        } while(valueOf(userInput) != QUIT);
+            io.println(PersonRepositoryFacadeRefactored
+                    .INSTANCE
+                    .getRepository()
+                    .getPersonList()
+                    .toString());
+        } while (valueOf(userInput) != QUIT);
     }
 
 }

@@ -37,8 +37,8 @@ public enum PersonRepositoryFacadeRefactored {
         final Long newId = console.getLongInput("Enter new id");
         final String name = console.getStringInput("Enter name");
         final Integer age = console.getIntegerInput("Enter age");
-
-        return getRepository().update(id, new Person(newId, name, age));
+        personDto.update(id, new Person(newId, name, age));
+        return getRepository().findById(id);
     }
 
     public Person delete() {
