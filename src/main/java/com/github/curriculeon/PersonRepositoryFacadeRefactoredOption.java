@@ -29,9 +29,9 @@ public enum PersonRepositoryFacadeRefactoredOption {
             final String message = "Welcome to the [ %s ] menu, from here, you can select of the following options:\n\t%s";
             userInput = io.getStringInput(message, menuName, menuOptions).toUpperCase();
             valueOf(userInput).invoke();
-            io.println(new RepositoryLogger<>(PersonRepositoryFacadeRefactored
+            io.println(PersonRepositoryFacadeRefactored
                     .INSTANCE
-                    .getRepository())
+                    .getRepository()
                     .getEntityList()
                     .toString());
         } while (valueOf(userInput) != QUIT);
