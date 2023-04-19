@@ -10,7 +10,7 @@ public class PersonRepositoryFacade {
     }
 
     public PersonRepository getRepository() {
-        return new PersonRepository(personDto.toList());
+        return new PersonRepository(personDto.getEntityList());
     }
 
     public Person add() {

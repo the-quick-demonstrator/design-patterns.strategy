@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class PersonPersistentRepository implements PersonRepositoryInterface {
+public class PersonPersistentRepository implements PersonRepositoryInterfaceRefactored {
     private final Document document;
 
     public PersonPersistentRepository(File file) {
@@ -13,7 +13,7 @@ public class PersonPersistentRepository implements PersonRepositoryInterface {
     }
 
     @Override
-    public List<Person> toList() {
+    public List<Person> getEntityList() {
         return document
                 .toList()
                 .stream()
@@ -24,12 +24,13 @@ public class PersonPersistentRepository implements PersonRepositoryInterface {
 
     @Override
     public Person findById(Long id) {
-        return toList()
+        return getEntityList()
                 .stream()
                 .filter(person -> person.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
+
 
     @Override
     public Person add(Person person) {
@@ -40,7 +41,7 @@ public class PersonPersistentRepository implements PersonRepositoryInterface {
     @Override
     public Person updateById(Long id, Person newPersonData) {
         document.replaceAllContent("");
-        toList().forEach(person -> {
+        getEntityList().forEach(person -> {
             final Long personId = person.getId();
             final Boolean isPersonToUpdate = Objects.equals(personId, id);
             final String personData = isPersonToUpdate ? newPersonData.toString() : person.toString();
@@ -53,7 +54,7 @@ public class PersonPersistentRepository implements PersonRepositoryInterface {
     public Person deleteById(Long id) {
         document.replaceAllContent("");
         Person personToDelete = findById(id);
-        toList().forEach(person -> {
+        getEntityList().forEach(person -> {
             final Long personId = person.getId();
             final Boolean isPersonToDelete = Objects.equals(personId, id);
             final String personData = isPersonToDelete ? "" : person.toString();

@@ -1,6 +1,6 @@
 package com.github.curriculeon;
 
-public class Person {
+public class Person implements EntityInterface<Long> {
     private Long id;
     private String name;
     private int age;

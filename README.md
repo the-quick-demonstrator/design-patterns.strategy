@@ -5,7 +5,7 @@
 * DocumentInterface
 
 ## Part 2 - Repository Design
-1. Person
+1. Person, Serialization, Entity, `getId`
 * PersonRepository
 
 ## Part 3 - Mediator Pattern

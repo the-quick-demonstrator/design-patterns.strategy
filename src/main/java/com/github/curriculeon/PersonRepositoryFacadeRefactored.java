@@ -4,17 +4,17 @@ import java.io.File;
 import java.util.List;
 
 public enum PersonRepositoryFacadeRefactored {
-    INSTANCE(new PersonPersistentRepository(new File("target/database.csv")));
-    private final PersonPersistentRepository personDto;
+    INSTANCE(new File("target/database.csv"));
     private final InputOutputMediator console;
+    private final File file;
 
-    PersonRepositoryFacadeRefactored(PersonPersistentRepository personDto) {
-        this.personDto = personDto;
+    PersonRepositoryFacadeRefactored(File file) {
+        this.file = file;
         this.console = new InputOutputMediator();
     }
 
-    public PersonRepository getRepository() {
-        return new PersonRepository(personDto.toList());
+    public RepositoryInterface<Long, Person> getRepository() {
+        return new RepositoryLogger<>(new PersonPersistentRepository(file));
     }
 
     public Person add() {
@@ -22,7 +22,7 @@ public enum PersonRepositoryFacadeRefactored {
         final String name = console.getStringInput("Enter name");
         final Integer age = console.getIntegerInput("Enter age");
         final Person personToAdd = new Person(id, name, age);
-        personDto.add(personToAdd);
+        getRepository().add(personToAdd);
         return personToAdd;
     }
 
@@ -36,16 +36,16 @@ public enum PersonRepositoryFacadeRefactored {
         final Long newId = console.getLongInput("Enter new id");
         final String name = console.getStringInput("Enter name");
         final Integer age = console.getIntegerInput("Enter age");
-        personDto.updateById(id, new Person(newId, name, age));
+        getRepository().updateById(id, new Person(newId, name, age));
         return getRepository().findById(id);
     }
 
     public Person delete() {
         final Long id = console.getLongInput("Enter id");
-        return getRepository().delete(id);
+        return getRepository().deleteById(id);
     }
 
     public List<Person> findAll() {
-        return getRepository().getPersonList();
+        return getRepository().getEntityList();
     }
 }
