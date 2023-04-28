@@ -1,7 +1,41 @@
 # Project Title
 
-* **Objective** - To create a product...
-* **Purpose** - To gain familiarity the following features...
+* **Objective** - To create an application which exposes a command-line interface for creating, updating, reading, and deleting persistent account objects.
+* **Purpose** - To gain familiarity the following design patterns:
+  1. Facade Pattern
+  2. Repository Pattern
+  3. Mediator Pattern
+  4. Strategy Pattern
+  5. The Pattern
+  6. Decorator Pattern
+
+### Facade Pattern
+* `Document`
+* `DocumentInterface`
+
+### Repository Pattern
+* `Account`
+* `Serializable`
+* `EntityInterface`
+* `AccountRepository`
+
+### Mediator Pattern
+* `AccountRepositoryFacade`
+* `InputOutputMediator`
+* `AccountRepositoryFacadeRefactored`
+
+### Strategy Pattern
+* `AccountRepositorytFacadeRefactoredOption`
+
+### The Pattern
+* `PersistentAccountRepository`
+* `AccountRepositoryInterface`
+* `RepositoryInterface`
+* `AccountRepositoryRefactored`
+
+### Decorator Pattern
+* `RepositoryLogger`
+* `RepositoryLoggerInterface`
 
 
 
